@@ -30,7 +30,9 @@ jobs:
           git config --global user.email ${{ env.GITHUB_USERNAME }}@users.noreply.github.com
 
           git remote add upstream ${{ env.UPSTREAM }}
-          git fetch upstream ${{ env.UPSTREAM_BRANCH_NAME }}:${{ env.BRANCH_NAME }}
+          # git fetch upstream ${{ env.UPSTREAM_BRANCH_NAME }}:${{ env.BRANCH_NAME }}
+
+          git pull upstream ${{ env.UPSTREAM_BRANCH_NAME }}
 
           git checkout ${{ env.BRANCH_NAME }}
           
