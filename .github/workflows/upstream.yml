@@ -26,8 +26,8 @@ jobs:
 
       - name: Sync and merge upstream repository with your current repository
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@users.noreply.github.com"
+          git config --global user.name ${{ env.GITHUB_USERNAME }}
+          git config --global user.email ${{ env.GITHUB_USERNAME }}@users.noreply.github.com
 
           git remote add upstream ${{ env.UPSTREAM }}
           git fetch upstream ${{ env.UPSTREAM_BRANCH_NAME }}:${{ env.BRANCH_NAME }}
