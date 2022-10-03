@@ -9,7 +9,7 @@ env:
   UPSTREAM: "https://github.com/runsidekick/sidekick-agent-java"
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   UPSTREAM_BRANCH_NAME: master
-  BRANCH_NAME: auto-upstream-merge
+  BRANCH_NAME: master
   ORIGIN_PATH: runforesight-demo/sidekick-agent-java
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
   GITHUB_USERNAME: runforesight-demo
@@ -37,13 +37,3 @@ jobs:
           git remote set-url origin "https://x-access-token:${{ env.GITHUB_TOKEN }}@github.com/${{ env.ORIGIN_PATH }}"
           git commit -am "Merge upstream" || true
           git push -f -u origin ${{ env.BRANCH_NAME }}
-
-      - name: Install hub
-        uses: geertvdc/setup-hub@master
-
-      - name: Automatically create pull Request
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_USER: ${{ secrets.GITHUB_USER }}
-        run: |
-          hub pull-request -m "Merge upstream"  -b  ${{ env.GITHUB_USERNAME}}:${{ env.UPSTREAM_BRANCH_NAME }} -h ${{ env.GITHUB_USERNAME }}:${{ env.BRANCH_NAME }} --no-edit || true
